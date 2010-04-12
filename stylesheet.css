@@ -1,0 +1,360 @@
+/*
+  $Id: stylesheet.css,v 1.56 2003/06/30 20:04:02 hpdl Exp $
+
+  osCommerce, Open Source E-Commerce Solutions
+  http://www.oscommerce.com
+
+  Copyright (c) 2003 osCommerce
+
+  Released under the GNU General Public License
+*/
+
+.boxText { font-family: Verdana; font-size: 14px; }
+.errorBox { font-family : Verdana; font-size : 14px; background: #ffb3b5; font-weight: bold; }
+.stockWarning { font-family : Verdana; font-size : 14px; color: #000001; }
+.productsNotifications { background: #f2fff7; }
+.orderEdit { font-family : Verdana; font-size : 14px; color: #70d250; text-decoration: underline; }
+
+BODY {
+  text-align: center;
+}
+/*general links*/
+A {
+  color: black;
+  text-decoration:none;
+  border: none;
+}
+
+A:hover {
+  text-decoration: none;
+  }
+
+FORM {
+	display: inline;
+}
+
+TABLE.column {
+background-image: url(_include/_images/back.column.jpg);
+}
+
+/*change navbar row*/
+TR.headerNavigation {
+  background: transparent;
+}
+
+/*change navbar column*/
+TD.headerNavigation {
+  font-family: Verdana;
+  font-size: 18px;
+  background: transparent;
+  color: #ffffff;
+  font-weight : bold;
+  padding-right: 10px;
+  padding-top: 5px;
+}
+
+/*navbar links*/
+A.headerNavigation {
+  color: #FFFFFF;
+  text-decoration:none;
+}
+
+A.headerNavigation:hover {
+  color: purple;
+  text-decoration: none;
+  font-weight : bold;
+   }
+
+/* */
+TR.headerError {
+  background: #ff0000;
+}
+
+TD.headerError {
+  font-family: Tahoma, Verdana;
+  font-size: 14px;
+  background: #ff0000;
+  color: #ffffff;
+  font-weight : bold;
+  text-align : center;
+}
+
+TR.headerInfo {
+  background: #00ff00;
+}
+
+TD.headerInfo {
+  font-family: Tahoma, Verdana;
+  font-size: 14px;
+  background: #00ff00;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+TR.footer {
+  background: #33ccff;
+}
+
+TD.footer {
+  font-family: Verdana;
+  font-size: 10px;
+  background: #663300;
+  color: #ffffff;
+  font-weight : bold;
+}
+
+A.infoBoxContentsHeading {
+  color: #000000;
+  text-decoration:none;} 
+  
+A.infoBoxContentsHeading:hover {
+  color: #ffffff;
+  text-decoration:none;}
+
+.infoBoxContents {
+  font-family: Verdana;
+  font-size: 12px;
+  color: #ffffff;
+  line-height:175%
+}
+
+.infoBoxColor, .infoBoxColor a {
+color: purple;
+text-decoration:none;}
+
+.infoBoxContents2 {
+  font-family: Verdana;
+  font-size: 12px;
+  color: #000000;
+  line-height:175%
+}
+
+A.infoBoxContents {
+  color: #ffffff;
+  text-decoration:none;
+  }
+  
+A.infoBoxContents:hover {
+  background: #ffffff;
+  color: #cc00ff;
+  text-decoration:none;
+  }
+
+.infoBoxNotice {
+  background: #000000;
+}
+
+.infoBoxNoticeContents {
+  background: #000000;
+  font-family: Verdana;
+  font-size: 10px;
+}
+/*infobox headers*/
+TD.infoBoxHeading {
+  background-image: url(_include/_images/icon_back.png);
+  background-repeat: no-repeat;
+  background-position:center center;
+  font-family: Verdana;
+  font-size: 15px;
+  font-weight: bold;
+  text-align:center;
+  color: #cc00ff;
+  height: 30px;}
+
+/*TD.infoBoxHeading:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 2px;}*/
+
+TD.infoBox, SPAN.infoBox {
+  font-family: Verdana;
+  font-size: 14px;
+}
+
+TR.accountHistory-odd, TR.addressBook-odd, TR.alsoPurchased-odd, TR.payment-odd, TR.productListing-odd, TR.productReviews-odd, TR.upcomingProducts-odd, TR.shippingOptions-odd {
+  background: transparent;
+}
+
+TR.accountHistory-even, TR.addressBook-even, TR.alsoPurchased-even, TR.payment-even, TR.productListing-even, TR.productReviews-even, TR.upcomingProducts-even, TR.shippingOptions-even {
+  background: transparent;
+}
+
+/*Table for the list of products*/
+TABLE.productListing {
+  /*border: 1px;
+  border-style: solid;
+  border-color: #66ffff;
+  border-spacing: 1px;*/
+}
+
+/*First line for the list of products*/
+.productListing-heading {
+  font-family: Verdana;
+  font-size: 16px;
+  background: transparent;
+  color: purple;
+  font-weight: bold;
+}
+
+TD.productListing-data {
+  font-family: Verdana;
+  font-size: 14px;
+}
+
+A.pageResults {
+  color: #0000FF;
+  text-decoration:none;
+}
+
+A.pageResults:hover {
+  color: #33ccff;
+  background: #FFFF33;
+}
+
+/*Main page titles*/
+TD.pageHeading, DIV.pageHeading {
+  font-family: Verdana;
+  font-size: 20px;
+  font-weight: bold;
+  color: purple;
+}
+
+TR.subBar {
+  background: #000000;
+}
+
+TD.subBar {
+  font-family: Verdana;
+  font-size: 10px;
+  color: #33ccff;
+}
+
+TD.main, P.main {
+  font-family: Verdana;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+TD.smallText, SPAN.smallText, P.smallText, a.smallText {
+  font-family: Verdana;
+  font-size: 16px;
+  font-weight: bold;
+  color: purple;
+}
+
+TD.accountCategory {
+  font-family: Verdana;
+  font-size: 14px;
+  color: #000001;
+}
+
+TD.fieldKey {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+TD.fieldValue {
+  font-family: Verdana;
+  font-size: 14px;
+}
+
+TD.tableHeading {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+SPAN.newItemInCart {
+  font-family: Verdana;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+CHECKBOX, INPUT, RADIO, SELECT {
+  font-family: Verdana;
+  font-size: 11px;
+}
+
+TEXTAREA {
+  width: 100%;
+  font-family: Verdana;
+  font-size: 11px;
+}
+
+SPAN.greetUser {
+  font-family: Verdana;
+  font-size: 14px;
+  color: #000001;
+  font-weight: bold;
+}
+
+TABLE.formArea {
+  background: #f1f9fe;
+  border-color: #7b9ebd;
+  border-style: solid;
+  border-width: 1px;
+}
+
+TD.formAreaTitle {
+  font-family: Tahoma, Verdana;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+SPAN.markProductOutOfStock {
+  font-family: Tahoma, Verdana;
+  font-size: 14px;
+  color: #ccc9966;
+  font-weight: bold;
+}
+
+SPAN.productSpecialPrice {
+  font-family: Verdana;
+  color: #ff0000;
+}
+
+SPAN.errorText {
+  font-family: Verdana;
+  color: #ff0000;
+}
+
+.moduleRow { }
+.moduleRowOver { background-color: #D7E9F7; cursor: pointer; cursor: hand; }
+.moduleRowSelected { background-color: #E9F4FC; }
+
+.checkoutBarFrom, .checkoutBarTo { font-family: Verdana; font-size: 10px; color: #8c8c8c; }
+.checkoutBarCurrent { font-family: Verdana; font-size: 10px; color: #000001; }
+
+/* message box Critique + Notifications*/
+
+.messageBox { font-family: Verdana; font-size: 14px; }
+.messageStackError, .messageStackWarning { font-family: Verdana; font-size: 10px; background-color: #ffb3b5; }
+.messageStackSuccess { font-family: Verdana; font-size: 10px; background-color: #99ff00; }
+
+/* input requirement */
+
+.inputRequirement { font-family: Verdana; font-size: 10px; color: #ff0000; }
+
+TD.pollBoxRow {
+border-color: #eeeeee;
+border-style: solid;
+border-width: 1px;
+}
+
+TD.pollBoxText {
+font-family: Verdana;
+font-size: 14px;
+color: #ffffff;
+border-color: #eeeeee;
+border-style: solid;
+border-width: 0px;
+}
+
+TR.pollOptRow {
+}
+TR.pollFooter {
+}

@@ -1,0 +1,33 @@
+#########################
+# How the site works... #
+#########################
+
+#########################
+#   Create new page:    #
+#########################
+
+1.  Create 2 pages with the same name in /shop and /shop/includes/languages/french
+        Use z_file_perfect_exemple.php from respective folder as template.
+2.  Define the page name in /shop/includes/filenames.php
+
+#########################
+#     Change theme:     #
+#########################
+
+1.  Open the page
+2.  Replace from under:
+    $breadcrumb->add(NAVBAR_TITLE, tep_href_link(FILENAME_LOGIN, '', 'SSL'));
+
+    To after:
+    <tr>
+        <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
+    </tr>
+
+    By:
+    include 'header_main.php';
+
+3.  Replace everything under:
+    <!-- body_text_eof //-->
+
+    By:
+    <?php include 'footer_main.php'; ?>

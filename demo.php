@@ -1,0 +1,4 @@
+﻿<?php echo $x; ?>
+<div class="clearl padtop15"><a class="header_button" href="/shop/_includes/_zip/csm.cd<?php echo $x; ?>.demo.zip"><span>T&eacute;l&eacute;charger une version de d&eacute;mo de notre logiciel au format zip gratuitement.</span></a><a class="newiframe clearl grey padtop10 padbot10" rel="group" title="Télécharger nos versions de démo" href="demo_info.php?iframe&width=950&height=500"><small>Cliquez ici pour plus d'information.</small></a></div>
+<div class="clearl padtop10"><a class="header_button" href="/shop/_includes/_zip/csm.cd<?php echo $x; ?>.demo.zip"><span>T&eacute;l&eacute;charger les images des modèles de ce CD</span></a></div>
+<div class="clearl padtop10"><a class="header_button" href="/shop/_includes/_zip/csm.cd<?php echo $x; ?>.instruction.zip"><span>T&eacute;l&eacute;charger les instruction de couture de ce CD</span></a></div>
