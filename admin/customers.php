@@ -11,6 +11,16 @@
 */
 
   require('includes/application_top.php');
+  
+  if ($_POST['status'] == sent) {
+      $custid = $_POST['customer'];
+      $points = $_POST['addpoints'];
+      $customer_points = tep_db_query("update " . TABLE_CUSTOMERS . " set points=points+" . $points . " where customers_id = '" . $custid . "'");
+  }
+  
+  //Get the value of each point
+  $points_value_query  = tep_db_query("select par_euro, valeur from fidelity");
+  $points_value_result = tep_db_fetch_array($points_value_query);
 
   $action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
 
@@ -705,8 +715,7 @@ function check_form() {
           <tr>
             <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
               <tr class="dataTableHeadingRow">
-                <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_LASTNAME; ?></td>
-                <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_FIRSTNAME; ?></td>
+                <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_LASTNAME . ' ' . TABLE_HEADING_FIRSTNAME; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACCOUNT_CREATED; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
@@ -742,17 +751,29 @@ function check_form() {
         echo '          <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(FILENAME_CUSTOMERS, tep_get_all_get_params(array('cID')) . 'cID=' . $customers['customers_id']) . '\'">' . "\n";
       }
 ?>
-                <td class="dataTableContent"><?php echo $customers['customers_lastname']; ?></td>
-                <td class="dataTableContent"><?php echo $customers['customers_firstname'];
-                
+                <td class="dataTableContent"><b><?php echo $customers['customers_lastname'] . ' ' .$customers['customers_firstname'] . '</b> - ';
+
                 $id = $customers['customers_id'];
+                
+                //Get customer points
+                $points_query = tep_db_query("select points from " . TABLE_CUSTOMERS . " where customers_id = '" . $id . "'");
+                $point_result = tep_db_fetch_array($points_query);
+                $pr = $point_result['points'];
+                $value = $points_value_result['valeur'] * $pr;
+                echo '<a href="mt_addpoint.php?custid=' . $id . '">' . $pr . ' points = ' . $value . ' euros</a>';
+                
+                //Select the different baskets if present
                 $query  = "SELECT * FROM `customers_basket` where `customers_id` = '$id'";
                 $result = mysql_query($query);
                 $row = mysql_fetch_array($result);
                 $pid = $row[products_id];
+                
+                $br = '<br>';
                                 
                 if (isset($pid)){
-                    echo ' - <a href="recover.php?cID=' . $id . '"><b>Voir Panier Courant</b></a>';
+
+                    echo $br . '<a href="recover.php?cID=' . $id . '"><i>Voir Panier Courant</i></a>';
+                    $br = ' - ';
                 }
                 
                 $query  = "SELECT * FROM `customers_basket_backup` where `customers_id` = '$id'";
@@ -761,9 +782,12 @@ function check_form() {
                 $pid = $row[products_id];
                                 
                 if (isset($pid)){
-                    echo ' - <a href="recover_paypal.php?cID=' . $id . '"><b>Voir Sauvegarde Paypal</b></a>';
+                    echo $br . '<a href="recover_paypal.php?cID=' . $id . '"><i>Voir Sauvegarde Paypal</i></a>';
                 }
-                ?></td>
+                ?>              
+                
+                
+                </td>
                 <td class="dataTableContent" align="right"><?php echo tep_date_short($info['date_account_created']); ?></td>
                 <td class="dataTableContent" align="right"><?php if (isset($cInfo) && is_object($cInfo) && ($customers['customers_id'] == $cInfo->customers_id)) { echo tep_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . tep_href_link(FILENAME_CUSTOMERS, tep_get_all_get_params(array('cID')) . 'cID=' . $customers['customers_id']) . '">' . tep_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';  } ?>&nbsp;</td>
               </tr>

@@ -16,9 +16,9 @@
   define('ENABLE_SSL', false); // secure webserver for checkout procedure?
   define('HTTP_COOKIE_DOMAIN', 'www.coudresurmesure.fr');
   define('HTTPS_COOKIE_DOMAIN', '');
-  define('HTTP_COOKIE_PATH', '/shop/');
+  define('HTTP_COOKIE_PATH', '/_csm/');
   define('HTTPS_COOKIE_PATH', '');
-  define('DIR_WS_HTTP_CATALOG', '/shop/');
+  define('DIR_WS_HTTP_CATALOG', '/_csm/');
   define('DIR_WS_HTTPS_CATALOG', '');
   define('DIR_WS_IMAGES', 'images/');
   define('DIR_WS_ICONS', DIR_WS_IMAGES . 'icons/');
@@ -30,7 +30,7 @@
   define('DIR_WS_LANGUAGES', DIR_WS_INCLUDES . 'languages/');
 
   define('DIR_WS_DOWNLOAD_PUBLIC', 'pub/');
-  define('DIR_FS_CATALOG', '/home/emmanuel/Documents/Dropbox/Business/GM/www/shop/');
+  define('DIR_FS_CATALOG', '/home/emmanuel/Documents/Dropbox/Business/GM/www/_csm/');
   define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');
   define('DIR_FS_DOWNLOAD_PUBLIC', DIR_FS_CATALOG . 'pub/');
 

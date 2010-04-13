@@ -1,11 +1,11 @@
 <?php
-                    
-                    //En of challenge, display result
+                    //End of challenge, display result
                     $page = '2009_12_gallery2';
                     $display = 'result';
                     include 'db_action.php';
                     
-                    /*original challenge & voting system
+                    /*
+                    //Challenge & voting system on
                     
                     $display = 'form';
                     
@@ -49,6 +49,5 @@
                         </form>
                         <br><b><a style="color: purple;" href="2009_12_gallery.php?page=2009_12_gallery2">[Voir les r&eacute;sultats]</a></b>
                     <?php
-                    }
-                    */
+                    }*/
                     ?>

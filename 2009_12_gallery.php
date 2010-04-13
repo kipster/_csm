@@ -25,7 +25,7 @@
                         <tbody>
                             <tr>
                                 <td align="center">
-                                    <img src="_includes/_events/2009_12/result.jpg">
+                                    <img src="_includes/_events/2009_12/results.jpg">
                                 </td>
                             </tr>
                         </tbody>

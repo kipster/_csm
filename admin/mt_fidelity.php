@@ -61,6 +61,20 @@
         <b>Chaque point a une valeur de <input type="text" name="valeur" /> euro.</b><br />
         <input type="submit" value="Mettre a jour" />
         </form>
+        <h1>Les meilleurs clients</h1>
+        <?php
+        $bestcustomers = tep_db_query("SELECT `customers_firstname`, `customers_lastname`, `points` FROM `customers` ORDER BY `customers`.`points` DESC LIMIT 0, 1000 ");
+               
+        $i = 0;
+        
+        while ($bcresult = tep_db_fetch_array($bestcustomers)){
+            $points = $bcresult['points'];
+            $v = $points * $value;
+            $i++;
+            echo $i . " - " . $bcresult['customers_firstname'] . " " . $bcresult['customers_lastname'] . " - " . $points . "points = " . $v . " euros.<br>";
+            }
+        ?>
+        
     </td>
 <!-- body_text_eof //-->
   </tr>
