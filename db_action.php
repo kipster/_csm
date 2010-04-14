@@ -118,7 +118,7 @@ if ($page == "2009_12_gallery"){
     $t2 = $t + 86400;    
     $ip=@$REMOTE_ADDR;
     
-    $query  = "SELECT * FROM `vote` where `ip` = '$ip'";
+    $query  = "SELECT * FROM `2009_12_vote` where `ip` = '$ip'";
     $result = mysql_query($query);
     
     $row = mysql_fetch_assoc($result);
@@ -126,17 +126,17 @@ if ($page == "2009_12_gallery"){
     if (isset($row['ip'])){
         $d = $row['day'];
         if ($t < $d){
-            echo '<p style="color: red; font-weight: bold; border-style: solid; border-color: red;">D&eacute;sol&eacute;, vous ne pouvez voter qu\'une fois par tranche de 24h.<br>Merci.</p>';        
+            echo '<p class="borderred">D&eacute;sol&eacute;, vous ne pouvez voter qu\'une fois par tranche de 24h.<br>Merci.</p>';        
         }
         else {
-            $update  = "UPDATE `vote` SET `day` = '$t2' WHERE `ip` = '$ip' LIMIT 1;";
+            $update  = "UPDATE `2009_12_vote` SET `day` = '$t2' WHERE `ip` = '$ip' LIMIT 1;";
             $result = mysql_query($update) or die('Error, update failed');
             $vote = 'yes';
         }
     }
     
     else {
-        $insert = "INSERT INTO `vote` ( `ip` , `day`) VALUES ('$ip', '$t2');";
+        $insert = "INSERT INTO `2009_12_vote` ( `ip` , `day`) VALUES ('$ip', '$t2');";
         mysql_query($insert) or die('Error, insertion failed');
         $vote = 'yes';
     }
@@ -210,4 +210,121 @@ if ($page == "2009_12_gallery2"){
     }    
     //echo '<br><br><a href="2009_12_gallery.php">Retour au sondage</a>';
 }
+
+if ($page == "2010_04_gallery"){
+
+    $ip=@$REMOTE_ADDR;
+    
+    $query  = "SELECT * FROM `2010_04_vote` WHERE `custid` = $id OR `custip` LIKE '$ip'";
+    $result = mysql_query($query);
+    
+    $row = mysql_fetch_assoc($result);
+    
+    if (isset($row['custip']) || isset($row['custid'])){
+        echo '<p class="borderred">Vous avez d&eacute;ja vot&eacute; avec ce compte ou de cet ordinateur - Vous ne pouvez plus revotez.<br>Si vous pensez que ce message vous est adress&eacute; par erreur,<a href="voteerreur.php?status=erreur&custid=' . $id . '&tenue=' . $tenue . '"> cliquez ici</a></p>';
+        //include 'voterequest.php';
+    }
+    
+    else {
+        $insert = "INSERT INTO `2010_04_vote` ( `custid` , `custip`, `custvote`) VALUES ('$id', '$ip', '$tenue');";
+        mysql_query($insert) or die('Error, insertion failed');
+        $vote = 'yes';
+    }
+        
+    
+    if ($vote == 'yes'){
+        //Query 1 - Update the vote for the selected item
+        $query  = "SELECT * FROM `2010_04_poll` where `Tenue` = '$tenue'";
+        $result = mysql_query($query);
+        
+        $row = mysql_fetch_assoc($result);
+        $count = $row['Count'];
+        
+        $count++;
+        
+        $update = "UPDATE `2010_04_poll` SET `count` = '$count' WHERE `Tenue` = '$tenue' LIMIT 1;";
+        mysql_query($update) or die('Error, Update failed');
+        
+        //Query 2 - Update the total
+        $query  = "SELECT * FROM `2010_04_poll` where `Tenue` = 'Total'";
+        $result = mysql_query($query);
+        
+        $row = mysql_fetch_assoc($result);
+        $count = $row['Count'];
+        
+        $count++;
+        
+        $update = "UPDATE `2010_04_poll` SET `count` = '$count' WHERE `Tenue` = 'Total' LIMIT 1;";
+        mysql_query($update) or die('Error, Update failed');
+    }
+    
+    //Query 3 - Get total
+    $query  = "SELECT * FROM `2010_04_poll` where `Tenue` = 'Total'";
+    $result = mysql_query($query);
+    
+    $row = mysql_fetch_assoc($result);
+    $count = $row['Count'];
+            
+    //Query 4 - Display result
+    $query  = "SELECT * FROM `2010_04_poll`";
+    $result = mysql_query($query);
+    $i = '1';
+    
+    while($row = mysql_fetch_array($result)){
+        if ($row['Tenue'] != 'Total'){
+            echo '<br><b>Tenue ' . $row['Tenue'] . '</b> = ' . $row['Count'] . ' votes sur ' . $count;
+        }
+    }
+    
+    echo '<br><br><a href="2010_04_gallery.php">Retour au sondage</a>';
+}
+
+if ($page == "2010_04_result"){
+    //Query 1 - Get total
+    $query  = "SELECT * FROM `2010_04_poll` where `Tenue` = 'Total'";
+    $result = mysql_query($query);
+    
+    $row = mysql_fetch_assoc($result);
+    $count = $row['Count'];
+
+    
+    //Query 3 - Get vote for each item
+    $query  = "SELECT * FROM `2010_04_poll`";
+    $result = mysql_query($query);
+    $i = '1';
+    
+    while($row = mysql_fetch_array($result)){
+        if ($row['Tenue'] != 'Total'){
+            echo '<br><b>Tenue ' . $row['Tenue'] . '</b> = ' . $row['Count'] . ' votes sur ' . $count;
+        }
+    }    
+    if ($echo != 'no'){echo '<br><br><a href="2010_04_gallery.php">Retour au sondage</a>';}
+}
+
+if ($page == "2010_04_force"){
+    //Query 1 - Update the vote for the selected item
+    $query  = "SELECT * FROM `2010_04_poll` where `Tenue` = '$tenue'";
+    $result = mysql_query($query);
+
+    $row = mysql_fetch_assoc($result);
+    $count = $row['Count'];
+
+    $count++;
+
+    $update = "UPDATE `2010_04_poll` SET `count` = '$count' WHERE `Tenue` = '$tenue' LIMIT 1;";
+    mysql_query($update) or die('Error, Update failed');
+
+    //Query 2 - Update the total
+    $query  = "SELECT * FROM `2010_04_poll` where `Tenue` = 'Total'";
+    $result = mysql_query($query);
+
+    $row = mysql_fetch_assoc($result);
+    $count = $row['Count'];
+
+    $count++;
+
+    $update = "UPDATE `2010_04_poll` SET `count` = '$count' WHERE `Tenue` = 'Total' LIMIT 1;";
+    mysql_query($update) or die('Error, Update failed');
+}
+
 ?>

@@ -565,6 +565,8 @@ text-align: justify;
 .right {text-align: right;}
 .justify {text-align: justify;}
 
+.borderred {background-color: pink; color: red; font-weight: bold; border-style: solid; border-color: red;}
+
 .margtop10 {margin-top :10px;}
 .margtop15 {margin-top :15px;}
 
@@ -577,6 +579,11 @@ text-align: justify;
 .margleft10 {margin-left :10px;}
 .margleft15 {margin-left :15px;}
 .margleft20 {margin-left :20px;}
+
+.pad5 {padding: 5px;}
+.pad10 {padding: 10px;}
+.pad15 {padding: 15px;}
+.pad20 {padding: 20px;}
 
 .padtop5 {padding-top :5px;}
 .padtop10 {padding-top :10px;}
