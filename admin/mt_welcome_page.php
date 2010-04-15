@@ -45,8 +45,6 @@
         $query = "UPDATE `welcome_page` SET `content` = '$content' WHERE `id` = 0 LIMIT 1";
 
         mysql_query($query) or die('Error, insert query failed');
-
-        echo 
         ?>
         <h1><span style="color: red;">La page d'accueil a &eacute;t&eacute; mise &agrave jour</span></h1>
         <?php ;
@@ -90,6 +88,7 @@
         <!--- Display Dossier -->
                 <br><h1>La galerie de tes fichiers personnels:</h1><table width="100%">
                     <tbody>
+                        <form name="fdelete" method="post">
                         <?php
                         $dir = '../dossier/';
                         // unlink($dir . "ba_small.jpg"); see http://www.daniweb.com/forums/thread135318.html#
@@ -98,7 +97,17 @@
                         $src = '<img src="' . $dir;
                         $srcend = '"width="270px"></a><br>';
                         $path = '<div id="small">/shop/dossier/';
-                        $td = '</div><br></td>';
+                        $td = '</div><br><input type=\'CHECKBOX\' name=\'file[]\' value=\'';
+                        $tdend = '\'><br></td>';
+
+                        if(isset($_POST['file']) && is_array($_POST['file'])){
+                        $old = getcwd(); //save the current directory
+                        chdir('../');
+                            foreach($_POST['file'] as $file){
+                                unlink('dossier/' . $file) or die("Failed to delete file");
+                            }
+                        chdir($old);
+                        }
 
                         $i = 0;
                         if ($handle = opendir($dir)) {
@@ -113,9 +122,9 @@
                                     elseif ($i == 2) {$image3 = $file;
                                                       $i=0;
                                                       echo  '<tr>' . 
-                                                            $link . $image1 . $linkend . $src . $image1 . $srcend . $path . $image1 . $td . 
-                                                            $link . $image2 . $linkend . $src . $image2 . $srcend . $path . $image2 . $td . 
-                                                            $link . $image3 . $linkend . $src . $image3 . $srcend . $path . $image3 . $td . 
+                                                            $link . $image1 . $linkend . $src . $image1 . $srcend . $path . $image1 . $td . $image1 . $tdend . 
+                                                            $link . $image2 . $linkend . $src . $image2 . $srcend . $path . $image2 . $td . $image2 . $tdend . 
+                                                            $link . $image3 . $linkend . $src . $image3 . $srcend . $path . $image3 . $td . $image3 . $tdend . 
                                                             '</tr>';
                                                       }
                                 }
@@ -125,9 +134,9 @@
                         if ($i != 0) {
                                 echo  '<tr>';
                                     if ($i == 1 || $i == 2) {
-                                        echo $link . $image1 . $linkend . $src . $image1 . $srcend . $path . $image1 . $td;
+                                        echo $link . $image1 . $linkend . $src . $image1 . $srcend . $path . $image1 . $td . $image1 . $tdend;
                                             if ($i == 2) {
-                                                echo $link . $image2 . $linkend . $src . $image2 . $srcend . $path . $image2 . $td;
+                                                echo $link . $image2 . $linkend . $src . $image2 . $srcend . $path . $image2 . $td . $image2 . $tdend;
                                                          }
                                             else {
                                                 echo '<td></td>';
@@ -136,6 +145,10 @@
                                 echo '<td></td></tr>';
                         }        
                         ?>
+                            <tr>
+                                <td colspan = "3"><input type="submit" name="Delete" value="Effacer"></td>
+                            </tr>
+                        </form>
                     </tbody>
                 </table>
     </td>
