@@ -105,6 +105,8 @@
             $query  = "SELECT `customers_email_address` FROM `customers` WHERE `customers_newsletter` = CONVERT(_utf8 '1' USING latin1) COLLATE latin1_german2_ci";
             $result = mysql_query($query);
 
+            echo '<h1>Lettres de nouvelles pour clients avec compte</h1>';
+            
             while($row = mysql_fetch_assoc($result)){
 
                 $to = $row['customers_email_address'];
@@ -120,19 +122,20 @@
                 
                 if (mail ($to,$subject,$message,$headers)){
                     $i++;
-                    $data2 .= $i . ' - ' . $to . '<br>';
+                    $data2 .= $i . ' - <a target="_blank" href="http://www.coudresurmesure.fr/shop/desabonnement.php?email=' . $to . '">' . $to . '</a><br>';
+                    echo $i . ' - <a target="_blank" href="http://www.coudresurmesure.fr/shop/desabonnement.php?email=' . $to . '">' . $to . '</a><br>';
                 }
                 else {
                     echo 'Oupss, il y a eu un probleme, veuillez reessayer plus tard.';
                 }
             }
 
-            echo $i . " lettres de nouvelle sont parties pour les clients avec un compte...<br>";
+            echo '<br>' . $i . " lettres de nouvelle sont parties pour les clients avec un compte...<br><h1>Lettres de nouvelles pour clients sans compte</h1>";
             $i = 0;
             
             $data2 .= '<br>Lettres de nouvelle pour les clients sans compte...<br><br>';
             
-            $query  = "SELECT * FROM `customers_news`";
+            $query  = "SELECT `email` FROM `customers_news`";
             $result = mysql_query($query);
 
             while($row = mysql_fetch_assoc($result)){
@@ -149,17 +152,24 @@
                 
                 if (mail ($to,$subject,$message,$headers)){
                     $i++;
-                    $data2 .= $i . ' - ' . $to . '<br>';
+                    $data2 .= $i . ' - <a target="_blank" href="http://www.coudresurmesure.fr/shop/desabonnement.php?email=' . $to . '">' . $to . '</a><br>';
+                    echo $i . ' - <a target="_blank" href="http://www.coudresurmesure.fr/shop/desabonnement.php?email=' . $to . '">' . $to . '</a><br>';
                 }
                 else {
                     echo 'Oupss, il y a eu un probleme, veuillez reeasyer plus tard.';
                 }
             }
-            include 'includes/modules/welcomepage/closedb.php';
-            echo $i . " lettres de nouvelle sont parties pour les clients sans compte...<br><br>";
+
+            echo '<br>' . $i . " lettres de nouvelle sont parties pour les clients sans compte...<br><br>";
             
-            if (mail ('info@coudresurmedure.fr','Information sur la newsletter du ' . $date2 . ' - ' . $sub,$data2,$headers)){
-                echo 'Email recapitulatif envoyé.';
+            $to = 'info@coudresurmesure.fr';
+            $subject = 'Information sur la newsletter du ' . $date2 . ' - ' . $sub;
+            $headers = 'From: "Coudre Sur Mesure" <info@coudresurmesure.fr>' . "\n";
+            $headers .='Content-Type: text/html; charset="iso-8859-1"'."\n";
+            $headers .='Content-Transfer-Encoding: 8bit'; 
+            
+            if (mail ($to,$subject,$data2,$headers)){
+                echo 'Email recapitulatif envoy&eacute;.<h1>Tout s\'est bien pass&eacute; la lettre est partie parfaitement.</h1>';
             }
         }
     ?>
