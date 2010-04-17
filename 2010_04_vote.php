@@ -37,16 +37,18 @@
                     ?>
                         <h3>Veuillez selectionner votre tenue pr&eacute;f&eacute;r&eacute;e.</h3>
                         <form action="2010_04_gallery.php" method="post">
-                        <input type="radio" name="tenue" value="1" /> Tenue 1
+                        <?php
+                        $i = 1;
+                        while ($j != 0){
+                        ?>
+                        <input type="radio" name="tenue" value="<?php echo $i ?>" /> Tenue <?php echo $i ?>
                         <br />
-                        <input type="radio" name="tenue" value="2" /> Tenue 2
-                        <br>
-                        <input type="radio" name="tenue" value="3" /> Tenue 3
-                        <br>
-                        <input type="radio" name="tenue" value="4" /> Tenue 4
-                        <br>
-                        <input type="radio" name="tenue" value="5" /> Tenue 5
-                        <br><br>                        
+                        <?php
+                        ;
+                        $i++;
+                        $j--;}
+                        ?>
+                        <br>                        
                         <input name="status" value="sent" type="hidden">
                         <input name="page" value="2010_04_gallery" type="hidden">
                         <input type="submit" />
